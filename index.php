@@ -39,8 +39,8 @@
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
-                           <p>Form login</p><br>
-                           
+                            <p>Form login</p><br>
+
                         </div>
                         <div class="login-form">
                             <form action="" method="post">
@@ -53,18 +53,18 @@
                                     <input class="au-input au-input--full" required="" type="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="login-checkbox">
-                                    
+
                                     <label>
                                         <a href="admin/fungsi/forgot-password/forgot-password.php" target="_BLANK">Lupa Password?</a>
                                     </label>
                                 </div>
                                 <button name="submit" class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
-                              
+
                             </form>
-                           
-                            
-                         <!-- Login -->
-                         <?php $pro->login("username", "password", "submit"); ?>
+
+
+                            <!-- Login -->
+                            <?php $pro->login("username", "password", "submit"); ?>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
     </div>
 
 
-<!--     <div class="container">
+    <!--     <div class="container">
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-5">
