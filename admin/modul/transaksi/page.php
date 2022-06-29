@@ -11,7 +11,9 @@ if (isset($_POST['hapus'])) {
 }
 
 foreach (summon_admin() as $adm) :
+
 ?>
+
 
 
 
@@ -53,8 +55,13 @@ foreach (summon_admin() as $adm) :
 
         <!-- Main CSS-->
         <link href="<?= url() ?>css/theme.css" rel="stylesheet" media="all">
-
     </head>
+    <script>
+        // Biar engga muncul issue confirm from submission
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 
     <body class="animsition">
         <div class="page-wrapper">
