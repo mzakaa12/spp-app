@@ -8,7 +8,3 @@ switch ($modul) {
 	case 'print': include 'print-tagihan.php'; break;
 	
 }
-
-
-
- ?>
