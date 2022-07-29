@@ -1,6 +1,5 @@
 <?php
 $koneksi = mysqli_connect('localhost', 'root', '', 'sppsekolah');
-
 $batas = 5;
 $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
 $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
@@ -12,16 +11,33 @@ $data = mysqli_query($koneksi, "SELECT * FROM tb_tagihan");
 $jumlah_data = mysqli_num_rows($data);
 $total_halaman = ceil($jumlah_data / $batas);
 
-
 $nomor = $halaman_awal + 1;
 
-date_default_timezone_set("Asia/Jakarta");
 
-$bulan = date("m");
+
+if (isset($_POST['submit'])) {
+  $bln = $_POST['bulan'];
+  $siswa = mysqli_query($koneksi, "SELECT * FROM tb_tagihan WHERE bulan = '$bln'");
+} else {
+  # code...
+  $siswa = mysqli_query($koneksi, "SELECT * FROM tb_tagihan LIMIT $halaman_awal, $batas");
+}
+
+// cari
+if (isset($_POST['go'])) {
+  $cari = $_POST['cari'];
+  $siswa = mysqli_query($koneksi, "SELECT * FROM tb_tagihan WHERE nama LIKE '%" . $cari . "%' OR kelas LIKE '%" . $cari . "%' OR  bulan LIKE '%" . $cari . "%'");
+} else {
+  $siswa = mysqli_query($koneksi, "SELECT * FROM tb_tagihan LIMIT $halaman_awal, $batas");
+}
+// date_default_timezone_set("Asia/Jakarta");
+
+// $bulan = date("m");
+
 
 // cari
 
-$siswa = mysqli_query($koneksi, "SELECT * FROM tb_tagihan LIMIT $halaman_awal, $batas");
+
 
 
 
@@ -38,32 +54,31 @@ foreach ($siswa as $pro) :
     <td><?= $pro['kelas']; ?></td>
     <td><?= $pro['prodi']; ?></td>
     <td>
+
       <?php
-
-
-      if ($bulan == 1) {
+      if ($pro['bulan'] == 01) {
         echo '<p style="color: black;">Januari</p>';
-      } else if ($bulan == 2) {
+      } else if ($pro['bulan'] == 02) {
         echo '<p style="color: black;">Febuari</p>';
-      } elseif ($bulan == 3) {
+      } elseif ($pro['bulan'] == 03) {
         echo '<p style="color: black;">Maret</p>';
-      } elseif ($bulan == 4) {
+      } elseif ($pro['bulan'] == 04) {
         echo '<p style="color: black;">April</p>';
-      } elseif ($bulan == 5) {
+      } elseif ($pro['bulan'] == 05) {
         echo '<p style="color: black;">Mei</p>';
-      } elseif ($bulan == 6) {
+      } elseif ($pro['bulan'] == 06) {
         echo '<p style="color: black;">Juni</p>';
-      } elseif ($bulan == 7) {
+      } elseif ($pro['bulan'] == 07) {
         echo '<p style="color: black;">Juli</p>';
-      } elseif ($bulan == 8) {
+      } elseif ($pro['bulan'] == '08') {
         echo '<p style="color: black;">Agustus</p>';
-      } elseif ($bulan == 9) {
+      } elseif ($pro['bulan'] == '09') {
         echo '<p style="color: black;">September</p>';
-      } elseif ($bulan == 10) {
+      } elseif ($pro['bulan'] == 10) {
         echo '<p style="color: black;">Oktober</p>';
-      } elseif ($bulan == 11) {
+      } elseif ($pro['bulan'] == 11) {
         echo '<p style="color: black;">November</p>';
-      } elseif ($bulan == 12) {
+      } elseif ($pro['bulan'] == 12) {
         echo '<p style="color: black;">Desember</p>';
       }
       ?>

@@ -498,3 +498,23 @@ function rupiah($angka)
 	$hasil = "Rp. " . number_format($angka, 2, ',', ',');
 	return $hasil;
 }
+
+// fungsi tampil data berdasarkan bulan
+function laporan_bulanan()
+{
+	global $koneksi;
+	if (isset($_POST['submit'])) {
+		$bulan = date($_POST['bulan']);
+
+		if (!empty($bulan)) {
+			// perintah tampil data berdasarkan periode bulan
+			$q = mysqli_query($koneksi, "SELECT * FROM tb_tagihan WHERE MONTH(bulan) = '$bulan'");
+		} else {
+			// perintah tampil semua data
+			$q = mysqli_query($koneksi, "SELECT * FROM tb_tagihan");
+		}
+	} else {
+		// perintah tampil semua data
+		$q = mysqli_query($koneksi, "SELECT * FROM tb_tagihan");
+	}
+}
